@@ -1,5 +1,5 @@
-package ma.bakkou.projerebank.enums;
+package ma.bakkou.ProjerEbank.enums;
 
 public enum AccountStatus {
-CREATED ,ACTIVATED , SUSPENDED
+    CREATED, ACTIVATED, SUSPENDED
 }

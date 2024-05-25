@@ -1,12 +1,10 @@
-package ma.bakkou.projerebank.web;
-
+package ma.bakkou.ProjerEbank.web;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import ma.bakkou.projerebank.dtos.CustomerDTO;
-import ma.bakkou.projerebank.entities.Customer;
-import ma.bakkou.projerebank.exceptions.CustomerNotFoundException;
-import ma.bakkou.projerebank.services.BankAccountService;
+import ma.bakkou.ProjerEbank.dtos.CustomerDTO;
+import ma.bakkou.ProjerEbank.exceptions.CustomerNotFoundException;
+import ma.bakkou.ProjerEbank.services.BankAccountService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,35 +12,32 @@ import java.util.List;
 @RestController
 @AllArgsConstructor
 @Slf4j
-
+@CrossOrigin("*")
 public class CustomerRestController {
-
     private BankAccountService bankAccountService;
-
     @GetMapping("/customers")
     public List<CustomerDTO> customers(){
         return bankAccountService.listCustomers();
     }
-
-    @GetMapping("/customers/{id}")
-    public CustomerDTO getCustomr(@PathVariable(name ="id") Long customerId) throws CustomerNotFoundException {
-return bankAccountService.getCustomer(customerId);
-
+    @GetMapping("/customers/search")
+    public List<CustomerDTO> searchCustomers(@RequestParam(name = "keyword",defaultValue = "") String keyword){
+        return bankAccountService.searchCustomers("%"+keyword+"%");
     }
-
+    @GetMapping("/customers/{id}")
+    public CustomerDTO getCustomer(@PathVariable(name = "id") Long customerId) throws CustomerNotFoundException {
+        return bankAccountService.getCustomer(customerId);
+    }
     @PostMapping("/customers")
     public CustomerDTO saveCustomer(@RequestBody CustomerDTO customerDTO){
-return  bankAccountService.saveCustmer(customerDTO);
+        return bankAccountService.saveCustomer(customerDTO);
     }
-
     @PutMapping("/customers/{customerId}")
-    public CustomerDTO updateCustomer(@PathVariable Long customerId  ,CustomerDTO customerDTO){
-
+    public CustomerDTO updateCustomer(@PathVariable Long customerId, @RequestBody CustomerDTO customerDTO){
         customerDTO.setId(customerId);
-        return         bankAccountService.updateCustmer(customerDTO);
-
-
+        return bankAccountService.updateCustomer(customerDTO);
     }
-
-
+    @DeleteMapping("/customers/{id}")
+    public void deleteCustomer(@PathVariable Long id){
+        bankAccountService.deleteCustomer(id);
+    }
 }

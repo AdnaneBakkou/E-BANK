@@ -1,23 +1,24 @@
-package ma.bakkou.projerebank.entities;
+package ma.bakkou.ProjerEbank.entities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import ma.bakkou.projerebank.enums.OperationType;
+import ma.bakkou.ProjerEbank.enums.OperationType;
 
 import java.util.Date;
 @Entity
 @Data @NoArgsConstructor @AllArgsConstructor
-
 public class AccountOperation {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Date operationDate;
-    private double amount ;
+    private double amount;
     @Enumerated(EnumType.STRING)
-    private OperationType type ;
+    private OperationType type;
     @ManyToOne
     private BankAccount bankAccount;
-    private  String description ;
+    private String description;
 }
+

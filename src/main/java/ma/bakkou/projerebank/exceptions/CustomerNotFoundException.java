@@ -1,7 +1,6 @@
-package ma.bakkou.projerebank.exceptions;
-
+package ma.bakkou.ProjerEbank.exceptions;
 public class CustomerNotFoundException extends Exception {
     public CustomerNotFoundException(String message) {
-    super(message);
+        super(message);
     }
 }

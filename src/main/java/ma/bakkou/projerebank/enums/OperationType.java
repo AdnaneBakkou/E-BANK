@@ -1,5 +1,5 @@
-package ma.bakkou.projerebank.enums;
+package ma.bakkou.ProjerEbank.enums;
 
 public enum OperationType {
-    DEBIT , CREDIT
+    DEBIT, CREDIT
 }

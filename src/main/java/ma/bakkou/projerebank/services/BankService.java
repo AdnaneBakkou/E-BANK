@@ -1,13 +1,12 @@
-package ma.bakkou.projerebank.services;
+package ma.bakkou.ProjerEbank.services;
 
-
-import jakarta.transaction.Transactional;
-import ma.bakkou.projerebank.entities.BankAccount;
-import ma.bakkou.projerebank.entities.CurrentAccount;
-import ma.bakkou.projerebank.entities.SavingAccount;
-import ma.bakkou.projerebank.repositories.BankAccountRepository;
+import ma.bakkou.ProjerEbank.repositories.BankAccountRepository;
+import ma.bakkou.ProjerEbank.entities.BankAccount;
+import ma.bakkou.ProjerEbank.entities.CurrentAccount;
+import ma.bakkou.ProjerEbank.entities.SavingAccount;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Transactional
@@ -15,11 +14,10 @@ public class BankService {
     @Autowired
     private BankAccountRepository bankAccountRepository;
     public void consulter(){
-        BankAccount bankAccount =
-                bankAccountRepository.findById("191fca79-0baa-4f2d-a05a-d76f7322e799").orElse(null);
-        if (bankAccount!=null) {
-
-            System.out.println("***************************");
+        BankAccount bankAccount=
+                bankAccountRepository.findById("0b36be78-8d5d-446b-9f20-37eadc9d3c3b").orElse(null);
+        if(bankAccount!=null) {
+            System.out.println("*****************************");
             System.out.println(bankAccount.getId());
             System.out.println(bankAccount.getBalance());
             System.out.println(bankAccount.getStatus());
@@ -27,15 +25,12 @@ public class BankService {
             System.out.println(bankAccount.getCustomer().getName());
             System.out.println(bankAccount.getClass().getSimpleName());
             if (bankAccount instanceof CurrentAccount) {
-                System.out.println("overdraft" + ((CurrentAccount) bankAccount).getOverDraft());
+                System.out.println("Over Draft=>" + ((CurrentAccount) bankAccount).getOverDraft());
             } else if (bankAccount instanceof SavingAccount) {
-                System.out.println("Rate" + ((SavingAccount) bankAccount).getInterestRate());
+                System.out.println("Rate=>" + ((SavingAccount) bankAccount).getInterestRate());
             }
             bankAccount.getAccountOperations().forEach(op -> {
-                System.out.println("*******");
-                System.out.println(op.getType());
-                System.out.println(op.getAmount());
-                System.out.println(op.getOperationDate());
+                System.out.println(op.getType() + "\t" + op.getOperationDate() + "\t" + op.getAmount());
             });
         }
     }

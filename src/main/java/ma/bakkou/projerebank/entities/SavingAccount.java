@@ -1,10 +1,11 @@
-package ma.bakkou.projerebank.entities;
+package ma.bakkou.ProjerEbank.entities;
 
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 
 @Entity
 @DiscriminatorValue("SA")

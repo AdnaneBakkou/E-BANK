@@ -1,4 +1,4 @@
-package ma.bakkou.projerebank.exceptions;
+package ma.bakkou.ProjerEbank.exceptions;
 
 public class BankAccountNotFoundException extends Exception {
     public BankAccountNotFoundException(String message) {
